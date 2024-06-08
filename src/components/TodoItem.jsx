@@ -1,19 +1,17 @@
 import axios from 'axios'
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import todoReducers from "../state/reducers";
 
 const TodoItem = ({ todoItem }) => {
-    const handleDelete = (e) => {
-        axios.delete(`http://localhost:5000/api/delete/${todoItem._id}`)
-            .then(res=> {
+    const dispatch = useDispatch();
 
-            })
+    const handleDelete = () => {
+        dispatch(todoReducers.deleteTodo(todoItem._id))
     }
 
-    const handleToggle = (e) => {
-        axios.get(`http://localhost:5000/api/toggle/${todoItem._id}`)
-            .then(res=> {
-
-            })
+    const handleToggle = () => {
+        dispatch(todoReducers.toggleTodo(todoItem._id))
     }
 
     return (

@@ -8,23 +8,20 @@ todoReducers.getAllTodo = createAsyncThunk("todos/fetchTodo", async () => {
 });
 
 todoReducers.newTodo = createAsyncThunk("todos/newTodo", async (data) => {
-    return await axios.post("", data, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
+    return await axios.post("http://localhost:5000/api/new", data)
 });
 
 todoReducers.updateTodo = createAsyncThunk("todos/updateTodo", async (data) => {
-    return await axios.put("", data)
+    return await axios.put("http://localhost:5000/api/update", data)
 });
 
-todoReducers.deleteTodo = createAsyncThunk("todos/deleteTodo", async (data) => {
-    return await axios.delete("")
+todoReducers.deleteTodo = createAsyncThunk("todos/deleteTodo", async (todoId) => {
+    await axios.delete("http://localhost:5000/api/delete/"+todoId)
+    return todoId
 });
 
-todoReducers.toggleTodo = createAsyncThunk("todos/toggleTodo", async (data) => {
-    return await axios.get("")
+todoReducers.toggleTodo = createAsyncThunk("todos/toggleTodo", async (todoId) => {
+    return await axios.get("http://localhost:5000/api/toggle/"+todoId)
 });
 
 

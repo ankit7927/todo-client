@@ -1,25 +1,20 @@
-import axios from 'axios';
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import todoReducers from "../state/reducers";
 
 const TodoForm = () => {
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
+
+    const dispatch = useDispatch();
+    const error = useSelector(state => state.todos.error);
 
     const [title, settitle] = useState("")
     const [desc, setdesc] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading(true)
-        axios.post("http://localhost:5000/api/new", { title, description:desc })
-            .then(res => {
-                // append this new todo in list
-                setLoading(false)
-            }).catch(err => {
-                setLoading(false)
-                setError(err.response.data.message)
-            })
-
+        dispatch(todoReducers.newTodo({ title, description:desc }))
+        settitle("")
+        setdesc("")
     }
 
     return (
@@ -28,9 +23,7 @@ const TodoForm = () => {
             <form onSubmit={handleSubmit}>
                 <div>title: <input type="text" value={title} onChange={e => settitle(e.target.value)} /></div><br />
                 <div>description: <input type="text" value={desc} onChange={e => setdesc(e.target.value)} /></div><br />
-                {
-                    loading ? <p>loading</p> : <input type="submit" value="submit" />
-                }
+                <input type="submit" value="submit" />
             </form>
         </div>
     )
