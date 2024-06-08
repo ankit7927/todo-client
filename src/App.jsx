@@ -2,23 +2,22 @@ import { useEffect, useState } from "react"
 import TodoForm from "./components/TodoForm"
 import TodoList from "./components/TodoList"
 import axios from "axios"
+import { useSelector, useDispatch } from 'react-redux';
+import todoReducers from "./state/reducers";
+
+
 
 function App() {
-    const [todos, setTodos] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState({})
+    const dispatch = useDispatch();
+    const todos = useSelector(state => state.todos.todos);
+    const status = useSelector(state => state.todos.status);
+    const error = useSelector(state => state.todos.error);
 
     useEffect(() => {
-        setLoading(true)
-        axios.get("http://localhost:5000/api/getall")
-            .then(res => {
-                setTodos(res.data)
-                setLoading(false)
-            }).catch(err => {
-                setError(err)
-                setLoading(false)
-            })
-    }, [])
+        if (status === 'idle') {
+            dispatch(todoReducers.getAllTodo());
+        }
+    }, [status, dispatch]);
 
     return (
         <main>
@@ -26,9 +25,7 @@ function App() {
                 error ? <p>{error.message}</p> : <></>
             }
             <TodoForm />
-            {
-                loading ? <p>loading</p> : <TodoList todoList={todos} />
-            }
+            <TodoList todoList={todos} />
         </main>
     )
 }
