@@ -1,29 +1,27 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import todoReducers from "../state/reducers";
 
 const TodoForm = () => {
 
     const dispatch = useDispatch();
-    const error = useSelector(state => state.todos.error);
 
     const [title, settitle] = useState("")
     const [desc, setdesc] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(todoReducers.newTodo({ title, description:desc }))
+        dispatch(todoReducers.newTodo({ title, description: desc }))
         settitle("")
         setdesc("")
     }
 
     return (
-        <div>
-            <p>{error}</p>
+        <div class="input-container">
             <form onSubmit={handleSubmit}>
-                <div>title: <input type="text" value={title} onChange={e => settitle(e.target.value)} /></div><br />
-                <div>description: <input type="text" value={desc} onChange={e => setdesc(e.target.value)} /></div><br />
-                <input type="submit" value="submit" />
+                <input type="text" id="name" placeholder="Name" value={title} onChange={e => settitle(e.target.value)} />
+                <input type="text" id="description" placeholder="Description" value={desc} onChange={e => setdesc(e.target.value)} />
+                <button id="addTodo">Add Todo</button>
             </form>
         </div>
     )

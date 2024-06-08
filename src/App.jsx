@@ -19,13 +19,12 @@ function App() {
     }, [status, dispatch]);
 
     return (
-        <main>
-            {
-                error ? <p>{error.message}</p> : <></>
-            }
-            <TodoForm />
+
+        <div >
+            <h1 className="fw-bold">My Todos</h1>
+            <TodoForm/>
             <TodoList todoList={todos} />
-        </main>
+        </div>
     )
 }
 

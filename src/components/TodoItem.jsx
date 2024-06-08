@@ -14,19 +14,17 @@ const TodoItem = ({ todoItem }) => {
     }
 
     return (
-        <div>
-            {
-                todoItem.completed ? <del><h5>{todoItem.title}</h5></del> : <h4>{todoItem.title}</h4>
-            }
-            
-            <p>{todoItem.description}</p>
-            <br />
-
-            {
-                todoItem.completed ? <></> : <button onClick={handleToggle}>complete</button>
-            }
-
-            <button onClick={handleDelete}>delete</button>
+        <div class={ todoItem.completed ? "todo-item completed" : "todo-item" }>
+            <div class="task">
+                <h2>{todoItem.title}</h2>
+                <p>{todoItem.description}</p>
+            </div>
+            <div class="buttons">
+                {
+                    todoItem.completed ? <></> :  <button class="complete" onClick={handleToggle}>Complete</button>
+                }
+                <button class="delete" onClick={handleDelete}>Delete</button>
+            </div>
         </div>
     )
 }
