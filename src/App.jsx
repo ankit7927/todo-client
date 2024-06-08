@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import TodoForm from "./components/TodoForm"
 import TodoList from "./components/TodoList"
-import axios from "axios"
 import { useSelector, useDispatch } from 'react-redux';
 import todoReducers from "./state/reducers";
 
