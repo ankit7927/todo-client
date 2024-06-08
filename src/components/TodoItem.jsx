@@ -14,16 +14,16 @@ const TodoItem = ({ todoItem }) => {
     }
 
     return (
-        <div class={ todoItem.completed ? "todo-item completed" : "todo-item" }>
-            <div class="task">
+        <div className={ todoItem.completed ? "todo-item completed" : "todo-item" }>
+            <div className="task">
                 <h2>{todoItem.title}</h2>
                 <p>{todoItem.description}</p>
             </div>
-            <div class="buttons">
+            <div className="buttons">
                 {
-                    todoItem.completed ? <></> :  <button class="complete" onClick={handleToggle}>Complete</button>
+                    todoItem.completed ? <></> :  <button className="complete" onClick={handleToggle}>Complete</button>
                 }
-                <button class="delete" onClick={handleDelete}>Delete</button>
+                <button className="delete" onClick={handleDelete}>Delete</button>
             </div>
         </div>
     )

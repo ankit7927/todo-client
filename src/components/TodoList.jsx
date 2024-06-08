@@ -3,7 +3,7 @@ import TodoItem from './TodoItem'
 
 const TodoList = ({ todoList }) => {
     return (
-        <div class="todo-list">
+        <div className="todo-list">
             {
                 todoList.map(todo => {
                     return (
