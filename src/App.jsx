@@ -3,6 +3,7 @@ import TodoScreen from "./screens/TodoScreen";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Navbar from "./components/Navbar";
+import SubCanceled from "./screens/SubCanceled";
 
 function App() {
 	const router = createBrowserRouter([
@@ -17,6 +18,10 @@ function App() {
 		{
 			path: "/register",
 			element: <Register />,
+		},
+		{
+			path: "/sub-cancel/:userId",
+			element: <SubCanceled />,
 		},
 	]);
 
