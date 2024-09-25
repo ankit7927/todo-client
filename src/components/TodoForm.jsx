@@ -17,7 +17,7 @@ const TodoForm = () => {
     }
 
     return (
-        <div className="input-container">
+        <div className="todo-input-container">
             <form onSubmit={handleSubmit}>
                 <input type="text" id="name" placeholder="Name" value={title} onChange={e => settitle(e.target.value)} />
                 <input type="text" id="description" placeholder="Description" value={desc} onChange={e => setdesc(e.target.value)} />

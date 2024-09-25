@@ -1,102 +1,161 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #2c2c2c;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #2c2c2c;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
 }
 
 .container {
-    background-color: #3a3a3a;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
+	background-color: #3a3a3a;
+	padding: 20px;
+	border-radius: 10px;
+	width: 80%;
+	max-width: 600px;
 }
 
 h1 {
-    text-align: center;
+	text-align: center;
 }
 
 .input-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	align-items: center;
 }
 
 input {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-right: 10px;
-    flex: 1;
+	margin: 10px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	margin-right: 10px;
+	flex: 1;
 }
 
 input#description {
-    flex: 2;
+	flex: 2;
 }
 
 button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 button#addTodo {
-    background-color: #ffa500;
-    color: #fff;
+	background-color: #ffa500;
+	color: #fff;
 }
 
 .todo-list {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .todo-item {
-    background-color: #444;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	background-color: #444;
+	padding: 15px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .todo-item.completed .task h2,
 .todo-item.completed .task p {
-    text-decoration: line-through;
-    color: #777;
+	text-decoration: line-through;
+	color: #777;
 }
 
 .task {
-    flex: 1;
+	flex: 1;
 }
 
 .task h2 {
-    margin: 0 0 5px 0;
-    font-size: 1.2em;
+	margin: 0 0 5px 0;
+	font-size: 1.2em;
 }
 
 .task p {
-    margin: 0;
-    color: #aaa;
+	margin: 0;
+	color: #aaa;
 }
 
 .buttons {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 button.complete {
-    background-color: #00cc66;
-    color: #fff;
+	background-color: #00cc66;
+	color: #fff;
 }
 
 button.delete {
-    background-color: #ff4d4d;
-    color: #fff;
+	background-color: #ff4d4d;
+	color: #fff;
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #3a3a3a;
+	color: white;
+}
+.navbar a {
+	color: white;
+	text-decoration: none;
+	padding: 0 15px;
+}
+.navbar a:hover {
+	text-decoration: underline;
+}
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+
+.form-box {
+	background-color: #3a3a3a;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	width: 300px;
+}
+.form-box h2 {
+	color: white;
+	margin-bottom: 20px;
+}
+.form-box input[type="text"],
+.form-box input[type="email"],
+.form-box input[type="password"] {
+	width: calc(100% - 22px);
+	padding: 10px;
+	margin: 10px 0;
+	border: none;
+	border-radius: 5px;
+}
+.form-box button {
+	padding: 10px 20px;
+	background-color: #ff9800;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+.form-box button:hover {
+	background-color: #e68900;
 }

@@ -1,28 +1,60 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const todoReducers = {}
+const token = localStorage.getItem("token");
 
-todoReducers.getAllTodo = createAsyncThunk("todos/fetchTodo", async () => {
-    return (await axios.get("http://localhost:5000/api/getall"));
+const newAxios = axios.create({
+	baseURL: "http://localhost:5000/api",
+	headers: {
+		Authorization: token,
+	},
 });
 
-todoReducers.newTodo = createAsyncThunk("todos/newTodo", async (data) => {
-    return await axios.post("http://localhost:5000/api/new", data)
+const thunkReducers = {};
+
+thunkReducers.getAllTodo = createAsyncThunk("todos/fetchTodo", async () => {
+	return await newAxios.get("http://localhost:5000/api/todo/getall");
 });
 
-todoReducers.updateTodo = createAsyncThunk("todos/updateTodo", async (data) => {
-    return await axios.put("http://localhost:5000/api/update", data)
+thunkReducers.newTodo = createAsyncThunk("todos/newTodo", async (data) => {
+	return await newAxios.post("http://localhost:5000/api/todo/new", data);
 });
 
-todoReducers.deleteTodo = createAsyncThunk("todos/deleteTodo", async (todoId) => {
-    await axios.delete("http://localhost:5000/api/delete/"+todoId)
-    return todoId
+thunkReducers.updateTodo = createAsyncThunk(
+	"todos/updateTodo",
+	async (data) => {
+		return await newAxios.put(
+			"http://localhost:5000/api/todo/update",
+			data,
+		);
+	},
+);
+
+thunkReducers.deleteTodo = createAsyncThunk(
+	"todos/deleteTodo",
+	async (todoId) => {
+		await newAxios.delete(
+			"http://localhost:5000/api/todo/delete/" + todoId,
+		);
+		return todoId;
+	},
+);
+
+thunkReducers.toggleTodo = createAsyncThunk(
+	"todos/toggleTodo",
+	async (todoId) => {
+		return await newAxios.get(
+			"http://localhost:5000/api/todo/toggle/" + todoId,
+		);
+	},
+);
+
+thunkReducers.login = createAsyncThunk("user/login", async (data) => {
+	return await axios.post("http://localhost:5000/api/auth/login", data);
 });
 
-todoReducers.toggleTodo = createAsyncThunk("todos/toggleTodo", async (todoId) => {
-    return await axios.get("http://localhost:5000/api/toggle/"+todoId)
+thunkReducers.register = createAsyncThunk("user/register", async (data) => {
+	return await axios.post("http://localhost:5000/api/auth/register", data);
 });
 
-
-export default todoReducers
+export default thunkReducers;

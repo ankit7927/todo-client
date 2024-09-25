@@ -1,27 +1,31 @@
-import { useEffect } from "react"
-import TodoForm from "./components/TodoForm"
-import TodoList from "./components/TodoList"
-import { useSelector, useDispatch } from 'react-redux';
-import todoReducers from "./state/reducers";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TodoScreen from "./screens/TodoScreen";
+import Register from "./screens/Register";
+import Login from "./screens/Login";
+import Navbar from "./components/Navbar";
 
 function App() {
-    const dispatch = useDispatch();
-    const todos = useSelector(state => state.todos.todos);
-    const status = useSelector(state => state.todos.status);
+	const router = createBrowserRouter([
+		{
+			path: "",
+			element: <TodoScreen />,
+		},
+		{
+			path: "/login",
+			element: <Login />,
+		},
+		{
+			path: "/register",
+			element: <Register />,
+		},
+	]);
 
-    useEffect(() => {
-        if (status === 'idle') {
-            dispatch(todoReducers.getAllTodo());
-        }
-    }, [status, dispatch]);
-
-    return (
-        <div >
-            <h1>My Todos</h1>
-            <TodoForm/>
-            <TodoList todoList={todos} />
-        </div>
-    )
+	return (
+		<div>
+			<Navbar />
+			<RouterProvider router={router} />
+		</div>
+	);
 }
 
-export default App
+export default App;
